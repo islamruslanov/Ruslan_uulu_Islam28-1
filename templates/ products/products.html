@@ -1,21 +1,25 @@
 {% extends 'layouts/index.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'products.css' %}">
+{% endblock %}
 
 {%block content%}
     <style type="text/css">
-        .products{
-            width: 80%;
-            margin-left: 10%;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-
     </style>
     <div class="products">
         {% for product in products %}
             <div class="card" style="width: 18rem;margin-bottom: 20px;">
   <div class="card-body">
-    <h5 class="card-title">{{ product.title }}</h5>
+      {% if product.rate > 40000.0 %}
+          <h5 class="card-title" style="color: rosybrown ">
+              {{ product.title }}
+          </h5>
+      {% else %}
+           <h5 class="card-title">{{ product.title }}</h5>
+      {% endif %}
+
     <h6 class="card-subtitle mb-2 text-muted">Rate: {{ product.description }}</h6>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     <a href="#" class="card-link">Card link</a>
